@@ -1,4 +1,4 @@
-yajl
-====
+Sigmund
+=======
 
-Yet Another JSON Library (in C)
+A JSON library written in ANSI C
