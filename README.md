@@ -1,7 +1,7 @@
 Sigmund
 =======
 
-A JSON library written in ANSI C
+A JSON parser library written in ANSI C
 
 License
 -------
