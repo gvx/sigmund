@@ -12,3 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#ifndef SIGMUND_H
+#define SIGMUND_H
+
+#endif
