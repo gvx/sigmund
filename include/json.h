@@ -16,7 +16,6 @@
 #ifndef JSON_H
 #define JSON_H
 
-#include "../sigmund.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -51,8 +50,8 @@ typedef struct {
  *  - (json_keyval*) key_pair: The JSON key/value pair to initialize
  *
  * Returns:
- *  - Success: 0
- *  - Failure: -1
+ *  - Success: 1
+ *  - Failure: 0
  */
 int json_keyval_new(json_keyval *key_pair);
 
@@ -62,8 +61,8 @@ int json_keyval_new(json_keyval *key_pair);
  *  - (json_keyval*) key_pair: The JSON key/value pair to destroy
  *
  * Returns:
- *  - Success: 0
- *  - Failure: -1
+ *  - Success: 1
+ *  - Failure: 0
  */
 int json_keyval_destroy(json_keyval *key_pair);
 

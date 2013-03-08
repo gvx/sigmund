@@ -16,4 +16,19 @@
 #ifndef SIGMUND_H
 #define SIGMUND_H
 
+/** Versioning Macros **/
+#define SIGMUND_VERSION_MAJOR 0
+#define SIGMUND_VERSION_MINOR 1
+#define SIGMUND_VERSION_PATCH 0
+#define SIGMUND_MAKE_VERSION(major, minor, patch) \
+    ((major) * 10000 + (minor) * 100 + (patch))
+#define SIGMUND_VERSION \
+    SIGMUND_MAKE_VERSION(SIGMUND_VERSION_MAJOR, \
+                        SIGMUND_VERSION_MINOR, \
+                        SIGMUND_VERSION_PATCH)
+
+#include <stdio.h>
+
+#include "./include/json.h"
+
 #endif
