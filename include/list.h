@@ -27,7 +27,7 @@
  **/
 typedef struct list_node {
 	void *data;
-	list_node *next;
+	struct list_node *next;
 } list_node;
 
 /**
@@ -63,8 +63,8 @@ int list_node_destroy(list_node *node);
  **/
 typedef struct list {
 	list_node *root_node;
-	list_node *tail_node
-}
+	list_node *tail_node;
+} list;
 
 /**
  * Linked list initializer method

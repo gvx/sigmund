@@ -13,13 +13,13 @@
  * limitations under the License.
  **/
 
-#include <stdlib.h>
-
 #ifndef JSON_H
 #define JSON_H
 
 #include <string.h>
 #include <stdlib.h>
+
+#include "list.h"
 
 /** 
  * JSON variable type
@@ -69,13 +69,12 @@ json_keyval* json_keyval_new();
  * JSON key/value pair destructor method
  *
  * Parameters:
- *  - (json_keyval*) key_pair: The JSON key/value pair to destroy
+ *  - (json_keyval*) key_val: The JSON key/value pair to destroy
  *
  * Returns:
- *  - Success: 1
- *  - Failure: 0
+ *	- Void
  **/
-int json_keyval_destroy(json_keyval *key_pair);
+void json_keyval_destroy(json_keyval *key_val);
 
 /**
  * JSON file object that holds all other key/value pairs
@@ -84,7 +83,7 @@ int json_keyval_destroy(json_keyval *key_pair);
  *	- (linked_list*) list: List of all key/value pairs
  **/
 typedef struct {
-	linked_list *list;
+	list *list;
 } json_object;
 
 /**
@@ -106,8 +105,7 @@ json_object* json_object_new();
  *	- (json_object*) object: The JSON object to destroy
  *
  * Returns:
- *	- Success: 1
- *	- Failure: 0
+ *	- Void 
  **/
 int json_object_destroy(json_object *object);
 

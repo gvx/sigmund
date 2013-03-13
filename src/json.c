@@ -14,3 +14,18 @@
  */
 
 #include "../include/json.h"
+
+json_keyval* json_keyval_new() {
+	json_keyval *key_val;
+	key_val = (json_keyval*) malloc(sizeof(json_keyval));
+
+	if (key_val) {
+		return key_val;
+	} else {
+		return NULL;
+	}
+}
+
+void json_keyval_destroy(json_keyval* key_val) {
+	free(key_val);
+}
