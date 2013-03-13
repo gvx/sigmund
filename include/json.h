@@ -11,7 +11,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 #ifndef JSON_H
 #define JSON_H
@@ -21,49 +21,92 @@
 
 /** 
  * JSON variable type
- *  - Primitive: number, boolean, or null
- *  - String: a string of at least 1 character
- *  - Array: a list of variables
- *  - Object: a key/value pair of variables
- */
+ *
+ * Variables:
+ *  - NULL_VALUE: Null
+ *  - BOOLEAN: True or false
+ *  - NUMBER: A positive or negative integer
+ *  - STRING: A string of at least 1 character
+ *  - ARRAY: A list of variables
+ *  - OBJECT: A key/value pair of variables
+ **/
 typedef enum {
-  PRIMITIVE = 0,
-  STRING = 1,
-  ARRAY = 2,
-  OBJECT = 3
+	NULL_VALUE = 0,
+	BOOLEAN = 1,
+	NUMBER = 2,
+  STRING = 3,
+  ARRAY = 4,
+  OBJECT = 5
 } jsontype_t;
 
 /**
  * JSON key/value pair
+ *
+ * Variables:
  *  - (char*) key: The JSON key
  *  - (void*) value: The JSON value
- */
+ **/
 typedef struct {
   char *key;
   void *value;
-  size_t size;
 } json_keyval;
 
 /**
  * JSON key/value pair initialization method
+ *
  * Parameters:
- *  - (json_keyval*) key_pair: The JSON key/value pair to initialize
+ *  - None 
  *
  * Returns:
- *  - Success: 1
- *  - Failure: 0
- */
-int json_keyval_new(json_keyval *key_pair);
+ *  - Success: json_keyval pointer
+ *  - Failure: NULL
+ **/
+json_keyval* json_keyval_new();
 
 /**
  * JSON key/value pair destructor method
+ *
  * Parameters:
  *  - (json_keyval*) key_pair: The JSON key/value pair to destroy
  *
  * Returns:
  *  - Success: 1
  *  - Failure: 0
- */
+ **/
 int json_keyval_destroy(json_keyval *key_pair);
+
+/**
+ * JSON file object that holds all other key/value pairs
+ * 
+ * Variables:
+ *	- (linked_list*) list: List of all key/value pairs
+ **/
+typedef struct {
+	linked_list *list;
+} json_object;
+
+/**
+ * JSON object initializer method
+ *
+ * Parameters:
+ *	- None
+ * 
+ * Returns:
+ *	- Success: json_object pointer
+ *	- Failure: NULL
+ **/
+json_object* json_object_new();
+
+/**
+ * JSON object destructor method
+ *
+ * Parameters:
+ *	- (json_object*) object: The JSON object to destroy
+ *
+ * Returns:
+ *	- Success: 1
+ *	- Failure: 0
+ **/
+int json_object_destroy(json_object *object);
 
 #endif
