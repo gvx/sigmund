@@ -13,6 +13,8 @@
  * limitations under the License.
  **/
 
+#include <stdlib.h>
+
 #ifndef LIST_H
 #define LIST_H
 
@@ -88,8 +90,25 @@ list* list_new();
  **/
 int list_destroy(list* list);
 
+/**
+ * Add a node to the list
+ *
+ * Parameters:
+ *	- (list*) list: The list to append the node to
+ *	- (list_node*) node: The node to append
+ *
+ * Returns:
+ *	- Void
+ **/
 void list_add_node(list *list, list_node *node);
 
+/**
+ * Remove a node from the list
+ *
+ * Parameters:
+ *	- (list*) list: The list to remove the node from
+ *	- (list_node*) node: The node to remove
+ **/
 void list_remove_node(list *list, list_node *node);
 
 #endif

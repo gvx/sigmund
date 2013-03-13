@@ -13,6 +13,8 @@
  * limitations under the License.
  **/
 
+#include <stdlib.h>
+
 #ifndef JSON_H
 #define JSON_H
 

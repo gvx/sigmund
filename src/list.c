@@ -13,9 +13,4 @@
  * limitations under the License.
  */
 
-#include "sigmund.h"
-
-int main() {
-
-    return 0;
-}
+#include "../include/list.h"
