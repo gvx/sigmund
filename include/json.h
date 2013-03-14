@@ -11,7 +11,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- **/
+ */
 
 #ifndef JSON_H
 #define JSON_H
@@ -20,6 +20,7 @@
 #include <stdlib.h>
 
 #include "list.h"
+#include "error.h"
 
 /** 
  * JSON variable type
@@ -39,16 +40,18 @@ typedef enum {
   STRING = 3,
   ARRAY = 4,
   OBJECT = 5
-} jsontype_t;
+} json_t;
 
 /**
  * JSON key/value pair
  *
  * Variables:
+ *  - (json_t) type: The type of value being stored
  *  - (char*) key: The JSON key
  *  - (void*) value: The JSON value
  **/
 typedef struct {
+	json_t type;
   char *key;
   void *value;
 } json_keyval;

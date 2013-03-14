@@ -13,30 +13,13 @@
  * limitations under the License.
  */
 
-#include "../include/json.h"
+#ifndef ERROR_H
+#define ERROR_H
 
-json_keyval* json_keyval_new() {
-	json_keyval *key_val;
-	key_val = (json_keyval*) malloc(sizeof(json_keyval));
+#include <stdio.h>
+#include <stdlib.h>
 
-	if (key_val) {
-		return key_val;
-	} else {
-		return NULL;
-	}
-}
-
-void json_keyval_destroy(json_keyval* key_val) {
-	free(key_val);
-}
-
-json_object* json_object_new() {
-	json_object *object;
-	object = (object*) malloc(sizeof(json_object));
-
-	if (object) {
-		return object;
-	}	else {
-		return NULL;
-	}
+void error(char *msg) {
+	fprintf(stderr, "%s: %s\n", msg, strerror(errno));
+	exit(1);
 }

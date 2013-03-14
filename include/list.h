@@ -13,10 +13,12 @@
  * limitations under the License.
  **/
 
-#include <stdlib.h>
-
 #ifndef LIST_H
 #define LIST_H
+
+#include <stdlib.h>
+
+#include "error.h"
 
 /**
  * A linked list node, used to hold any form of information
