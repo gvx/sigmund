@@ -14,3 +14,18 @@
  */
 
 #include "../include/list.h"
+
+list_node* list_node_new() {
+	*list_node node;
+	node = (list_node*) malloc(sizeof(list_node));
+
+	if (node) {
+		return node;
+	} else {
+		return NULL;
+	}
+}
+
+void list_node_destroy(list_node *node) {
+	free(node);
+}
