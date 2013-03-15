@@ -20,6 +20,8 @@ list_node* list_node_new() {
 	node = (list_node*) malloc(sizeof(list_node));
 
 	if (node) {
+    node->data = NULL;
+    node->next = NULL;
 		return node;
 	} else {
 		return NULL;
@@ -28,4 +30,53 @@ list_node* list_node_new() {
 
 void list_node_destroy(list_node *node) {
 	free(node);
+}
+
+list* list_new() {
+  list *new_list;
+  new_list = (list*) malloc(sizeof(list));
+
+  if (new_list) {
+    new_list->root_node = NULL;
+    new_list->tail_node = NULL;
+    return new_list;
+  } else {
+    return NULL;
+  }
+}
+
+void list_destroy(list *list) {
+  free(list);
+}
+
+void list_add_node(list *list, list_node *node) {
+  if (list->root_node == NULL && list->tail_node == NULL) {
+    list->root_node = node;
+    list->tail_node = node;
+  } else {
+    list_node *previous_tail = list->tail_node;
+    previous_tail->next = node;
+    list->tail_node = node;
+  }
+}
+
+void list_remove_node(list *list, list_node *node) {
+  list_node *current_node = list->root_node;
+  list_node *previous_node = list->root_node;
+  list_node *next_node = current_node->next;
+
+  while (*current_node != NULL) {
+    if (current_node == node) {
+      previous_node->next = next_node;
+      list_node_destroy(node);
+    } else {
+      previous_node = current_node;
+      current_node = current_node->next;
+      if (*next_node != NULL) {
+        next_node = current_node->next;
+      }
+    }
+  }
+
+  puts("The node you are trying to remove does not exist.");
 }
