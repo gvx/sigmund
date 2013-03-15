@@ -51,10 +51,9 @@ list_node* list_node_new();
  *	- (list_node*) node: The node to be destroyed
  *
  * Returns:
- *	- Success: 1
- *	- Failure: 0
+ *	- Void
  **/
-int list_node_destroy(list_node *node);
+void list_node_destroy(list_node *node);
 
 /**
  * A linked list
@@ -87,10 +86,9 @@ list* list_new();
  *	- (list*) list: The list to be destroyed
  *
  * Returns:
- *	- Success: 1
- *	- Failure: 0
+ *	- Void
  **/
-int list_destroy(list* list);
+void list_destroy(list* list);
 
 /**
  * Add a node to the list

@@ -16,7 +16,7 @@
 #include "../include/list.h"
 
 list_node* list_node_new() {
-	*list_node node;
+	list_node *node;
 	node = (list_node*) malloc(sizeof(list_node));
 
 	if (node) {
