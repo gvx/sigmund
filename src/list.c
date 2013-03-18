@@ -77,6 +77,4 @@ void list_remove_node(list *list, list_node *node) {
       }
     }
   }
-
-  puts("The node you are trying to remove does not exist.");
 }
