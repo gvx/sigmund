@@ -90,7 +90,7 @@ typedef struct {
 } json_object;
 
 /**
- * JSON object initializer method
+ * JSON object constructor method
  *
  * Parameters:
  *	- None

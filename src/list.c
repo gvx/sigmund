@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-#include "../include/list.h"
+#include "../include/sigmund.h"
 
 list_node* list_node_new() {
 	list_node *node;
