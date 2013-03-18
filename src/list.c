@@ -65,14 +65,14 @@ void list_remove_node(list *list, list_node *node) {
   list_node *previous_node = list->root_node;
   list_node *next_node = current_node->next;
 
-  while (*current_node != NULL) {
+  while (current_node != NULL) {
     if (current_node == node) {
       previous_node->next = next_node;
       list_node_destroy(node);
     } else {
       previous_node = current_node;
       current_node = current_node->next;
-      if (*next_node != NULL) {
+      if (next_node != NULL) {
         next_node = current_node->next;
       }
     }

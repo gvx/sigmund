@@ -32,7 +32,7 @@ void json_keyval_destroy(json_keyval* key_val) {
 
 json_object* json_object_new() {
 	json_object *object;
-	object = (object*) malloc(sizeof(json_object));
+	object = (json_object*) malloc(sizeof(json_object));
 
 	if (object) {
 		return object;
