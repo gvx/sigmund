@@ -36,13 +36,13 @@ typedef struct list_node {
  * List node initializer method
  *
  * Parameters:
- *	- None
+ *	- (void*) data: The data which the node holds
  *
  * Returns:
  *	- Success: list_node pointer
  *	- Failure: NULL
  **/
-list_node* list_node_new();
+list_node* list_node_new(void *data);
 
 /**
  * List node destructor method
@@ -108,7 +108,11 @@ void list_add_node(list *list, list_node *node);
  * Parameters:
  *	- (list*) list: The list to remove the node from
  *	- (list_node*) node: The node to remove
+ *
+ * Returns:
+ *	- Success: (list_node*) The node that was removed
+ *	- Failure: NULL
  **/
-void list_remove_node(list *list, list_node *node);
+list_node* list_remove_node(list *list, list_node *node);
 
 #endif

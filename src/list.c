@@ -15,12 +15,11 @@
 
 #include "../include/sigmund.h"
 
-list_node* list_node_new() {
-	list_node *node;
-	node = (list_node*) malloc(sizeof(list_node));
+list_node* list_node_new(void *data) {
+	list_node *node = (list_node*) malloc(sizeof(list_node));
 
 	if (node) {
-    node->data = NULL;
+    node->data = data;
     node->next = NULL;
 		return node;
 	} else {
@@ -33,8 +32,7 @@ void list_node_destroy(list_node *node) {
 }
 
 list* list_new() {
-  list *new_list;
-  new_list = (list*) malloc(sizeof(list));
+  list *new_list = (list*) malloc(sizeof(list));
 
   if (new_list) {
     new_list->root_node = NULL;
@@ -49,7 +47,7 @@ void list_destroy(list *list) {
   free(list);
 }
 
-void list_add_node(list *list, list_node *node) {
+int list_add_node(list *list, list_node *node) {
   if (list->root_node == NULL && list->tail_node == NULL) {
     list->root_node = node;
     list->tail_node = node;
@@ -60,7 +58,7 @@ void list_add_node(list *list, list_node *node) {
   }
 }
 
-void list_remove_node(list *list, list_node *node) {
+list_node* list_remove_node(list *list, list_node *node) {
   list_node *current_node = list->root_node;
   list_node *previous_node = list->root_node;
   list_node *next_node = current_node->next;
@@ -68,7 +66,8 @@ void list_remove_node(list *list, list_node *node) {
   while (current_node != NULL) {
     if (current_node == node) {
       previous_node->next = next_node;
-      list_node_destroy(node);
+
+			return current_node;
     } else {
       previous_node = current_node;
       current_node = current_node->next;
@@ -77,4 +76,7 @@ void list_remove_node(list *list, list_node *node) {
       }
     }
   }
+
+	// The culprit was not found
+	return NULL;
 }
