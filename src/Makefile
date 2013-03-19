@@ -6,17 +6,20 @@ LIB=libsigmund.a
 CFLAGS=-c -Wall -g
 AFLAGS=-rcs
 
+IDIR=../include
+
 SRC=$(wildcard *.c)
 OBJ=$(SRC:.c=.o)
+INC=$(addprefix $(IDIR)/,$(SRC:.c=.h))
 
 .PHONY: all clean
 
-all: sigmund 
+all: sigmund
 
-sigmund: $(OBJ)
-	$(AR) $(AFLAGS) $(LIB) $^
+sigmund: $(OBJ) $(INC)
+	$(AR) $(AFLAGS) $(LIB) $<
 
-%.o: %.c
+%.o: %.c $(IDIR)/%.h
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
