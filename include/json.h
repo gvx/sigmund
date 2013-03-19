@@ -34,9 +34,9 @@
  *  - OBJECT: A key/value pair of variables
  **/
 typedef enum {
-	NULL_VALUE = 0,
-	BOOLEAN = 1,
-	NUMBER = 2,
+  NULL_VALUE = 0,
+  BOOLEAN = 1,
+  NUMBER = 2,
   STRING = 3,
   ARRAY = 4,
   OBJECT = 5
@@ -47,12 +47,12 @@ typedef enum {
  *
  * Variables:
  *  - (json_t) type: The type of value being stored
- *  - (char*) key: The JSON key
+ *  - (char) key: The JSON key
  *  - (void*) value: The JSON value
  **/
 typedef struct {
 	json_t type;
-  char *key;
+  char key;
   void *value;
 } json_keyval;
 
@@ -60,13 +60,15 @@ typedef struct {
  * JSON key/value pair initialization method
  *
  * Parameters:
- *  - None 
+ *  - (json_t) type: The type of data the key/value pair holds
+ *  - (char) key: The new key/value pair key
+ *  - (void*) value: The new key/value pair value
  *
  * Returns:
  *  - Success: json_keyval pointer
  *  - Failure: NULL
  **/
-json_keyval* json_keyval_new();
+json_keyval* json_keyval_new(json_t type, char key, void *value);
 
 /**
  * JSON key/value pair destructor method
@@ -110,6 +112,6 @@ json_object* json_object_new();
  * Returns:
  *	- Void 
  **/
-int json_object_destroy(json_object *object);
+void json_object_destroy(json_object *object);
 
 #endif

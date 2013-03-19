@@ -15,11 +15,14 @@
 
 #include "../include/sigmund.h"
 
-json_keyval* json_keyval_new() {
-	json_keyval *key_val;
-	key_val = (json_keyval*) malloc(sizeof(json_keyval));
+json_keyval* json_keyval_new(json_t type, char key, void *value) {
+	json_keyval *key_val = (json_keyval*) malloc(sizeof(json_keyval));
 
 	if (key_val) {
+    key_val->type = type;
+    key_val->key = key;
+    key_val->value = (void*) value;
+
 		return key_val;
 	} else {
 		return NULL;
@@ -31,11 +34,17 @@ void json_keyval_destroy(json_keyval *key_val) {
 }
 
 json_object* json_object_new() {
-	json_object *object;
-	object = (json_object*) malloc(sizeof(json_object));
+	json_object *object = (json_object*) malloc(sizeof(json_object));
 
 	if (object) {
-		return object;
+    list *list = list_new();
+    if (list) {
+      object->list = list;
+
+      return object;
+    } else {
+      return NULL;
+    }
 	}	else {
 		return NULL;
 	}
