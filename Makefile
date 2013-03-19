@@ -9,9 +9,10 @@ AFLAGS=-rcs
 SDIR=src
 IDIR=include
 TDIR=tests
+ODIR=obj
 
 SRC=$(wildcard $(SDIR)/*.c)
-OBJ=$(SRC:.c=.o)
+OBJ=$(addprefix $(ODIR)/,$(notdir $(SRC:.c=.o)))
 INC=$(addprefix $(IDIR)/,$(notdir $(SRC:.c=.h)))
 
 .PHONY: all clean
@@ -21,9 +22,12 @@ all: sigmund
 sigmund: $(OBJ)
 	$(AR) $(AFLAGS) $(LIB) $^
 
-$(SDIR)/%.o: $(SDIR)/%.c $(IDIR)/%.h
+$(ODIR)/%.o: $(SDIR)/%.c $(IDIR)/%.h $(ODIR)
 	$(CC) $(CFLAGS) $< -o $@
 
+$(ODIR):
+	mkdir -p $(ODIR)
+
 clean:
-	rm $(OBJ)
+	rm -rf $(ODIR)
 	rm $(LIB)
