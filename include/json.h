@@ -20,7 +20,6 @@
 #include <stdlib.h>
 
 #include "list.h"
-#include "error.h"
 
 /** 
  * JSON variable type

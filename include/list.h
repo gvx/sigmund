@@ -18,8 +18,6 @@
 
 #include <stdlib.h>
 
-#include "error.h"
-
 /**
  * A linked list node, used to hold any form of information
  *

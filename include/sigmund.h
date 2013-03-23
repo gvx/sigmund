@@ -28,7 +28,6 @@
       SIGMUND_VERSION_PATCH)
 
 #include "json.h"
-#include "error.h"
 #include "list.h"
 
 #endif
