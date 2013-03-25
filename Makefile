@@ -5,7 +5,7 @@ LIB=libsigmund.a
 TEST=sigtest
 
 CFLAGS=-c -Wall -g
-LFLAGS=-lsigmund
+LFLAGS=-L. -lsigmund
 AFLAGS=-rcs
 
 SDIR=src
@@ -33,7 +33,7 @@ $(ODIR):
 	mkdir -p $(ODIR)
 
 test: $(TOBJ)
-	gcc $(LFLAGS) $^ -o $@
+	gcc $^ $(LFLAGS) -o $(TDIR)/$@
 
 $(TDIR)/%.o: $(TDIR)/%.c
 	gcc $(CFLAGS) $< -o $@
@@ -43,4 +43,5 @@ clean:
 	rm $(LIB)
 
 testclean:
+	rm tests/test
 	rm $(TDIR)/*.o
