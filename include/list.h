@@ -96,9 +96,10 @@ void list_destroy(list* list);
  *	- (list_node*) node: The node to append
  *
  * Returns:
- *	- Void
+ *	- Success: 0
+ *	- Failure: -1
  **/
-void list_add_node(list *list, list_node *node);
+int list_add_node(list *list, list_node *node);
 
 /**
  * Remove a node from the list

@@ -47,15 +47,21 @@ void list_destroy(list *list) {
   free(list);
 }
 
-void list_add_node(list *list, list_node *node) {
+int list_add_node(list *list, list_node *node) {
   if (list->root_node == NULL && list->tail_node == NULL) {
     list->root_node = node;
     list->tail_node = node;
+
+		return 0;
   } else {
     list_node *previous_tail = list->tail_node;
     previous_tail->next = node;
     list->tail_node = node;
+
+		return 0;
   }
+
+	return -1;
 }
 
 list_node* list_remove_node(list *list, list_node *node) {
