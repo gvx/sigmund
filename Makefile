@@ -4,7 +4,7 @@ AR=ar
 LIB=libsigmund.a
 TEST=sigtest
 
-CFLAGS=-c -Wall -g
+CFLAGS=-c -Wall -g -std=c99
 LFLAGS=-L. -lsigmund
 AFLAGS=-rcs
 

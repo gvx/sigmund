@@ -24,7 +24,7 @@ char* create_list() {
 	puts("Starting test: create_list");
 
 	list *list = list_new();
-	MU_ASSERT(list != NULL,
+	MU_TEST(list != NULL,
 			"Error in \"create_list\": Cannot create list");
 	free(list);
 
@@ -36,7 +36,7 @@ char* create_list_node() {
 
 	char *hello = "Hello, world!";
 	list_node *node = list_node_new((void*) hello);
-	MU_ASSERT(node != NULL,
+	MU_TEST(node != NULL,
 				"Error in \"create_list_node\": Cannot create node");
 	free(node);
 
@@ -52,11 +52,16 @@ char* add_node_to_list() {
 	list_node *hello_node = list_node_new((void*) hello);
 	list_node *goodbye_node = list_node_new((void*) goodbye);
 
-	MU_ASSERT(list_add_node(list, hello_node) == 0,
+	MU_TEST(list_add_node(list, hello_node) == 0,
 		"Error in \"add_node_to_list\": Cannot add node to list");
 	
-	MU_ASSERT(list_add_node(list, goodbye_node) == 0,
+	MU_TEST(list_add_node(list, goodbye_node) == 0,
 		"Error in \"add_node_to_list\": Cannot add node to list");
+
+	puts("  Iterating through list...");
+	for (list_node *node = list->root_node; node != NULL; node = node->next) {
+		printf("    %s\n", (char*) node->data);
+	}
 
 	free(list);
 	free(hello_node);
@@ -65,11 +70,61 @@ char* add_node_to_list() {
 	return 0;
 }
 
+char* remove_node_from_list() {
+	puts("Starting test: remove_node_from_list");
+
+	char *hello = "Hello, world!";
+	char *goodbye = "Goodbye, cruel world!";
+	list *list = list_new();
+	list_node *hello_node = list_node_new((void*) hello);
+	list_node *goodbye_node = list_node_new((void*) goodbye);
+	
+	list_add_node(list, hello_node);
+	list_add_node(list, goodbye_node);
+
+	MU_TEST(list_remove_node(list, hello_node) != NULL,
+			"Error in \"remove_node_from_list\": Cannot remove node from list");
+
+	MU_TEST(list_remove_node(list, goodbye_node) != NULL,
+			"Error in \"remove_node_from_list\": Cannot remove node from list");
+
+	free(list);
+	free(hello_node);
+	free(goodbye_node);
+
+	return 0;
+}
+
+char* destroy_list() {
+	puts("Starting test: destroy_list");
+
+	list *list = list_new();
+	
+	list_destroy(list);
+
+	return 0;
+}
+
+char* destroy_node() {
+	puts("Starting test: destroy_node");
+
+	char *hello = "Hello, world!";
+	list_node *node = list_node_new((void*) hello);
+
+	list_node_destroy(node);
+
+	return 0;
+}
+
 static char* run_tests() {
+	puts("BEGINNING LIST TESTS");
 	MU_RUN_TEST(create_list);
 	MU_RUN_TEST(create_list_node);
 	MU_RUN_TEST(add_node_to_list);
-	
+	MU_RUN_TEST(remove_node_from_list);
+	MU_RUN_TEST(destroy_list);
+	MU_RUN_TEST(destroy_node);
+
 	return 0;
 }
 
