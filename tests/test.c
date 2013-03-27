@@ -26,7 +26,7 @@ char* create_list() {
 	list *list = list_new();
 	MU_TEST(list != NULL,
 			"Error in \"create_list\": Cannot create list");
-	free(list);
+	list_destroy(list);
 
 	return 0;
 }
@@ -38,7 +38,7 @@ char* create_list_node() {
 	list_node *node = list_node_new((void*) hello);
 	MU_TEST(node != NULL,
 				"Error in \"create_list_node\": Cannot create node");
-	free(node);
+	list_node_destroy(node);
 
 	return 0;
 }
@@ -63,9 +63,9 @@ char* add_node_to_list() {
 		printf("    %s\n", (char*) node->data);
 	}
 
-	free(list);
-	free(hello_node);
-	free(goodbye_node);
+	list_destroy(list);
+	list_node_destroy(hello_node);
+	list_node_destroy(goodbye_node);
 
 	return 0;
 }
@@ -88,31 +88,21 @@ char* remove_node_from_list() {
 	MU_TEST(list_remove_node(list, goodbye_node) != NULL,
 			"Error in \"remove_node_from_list\": Cannot remove node from list");
 
-	free(list);
-	free(hello_node);
-	free(goodbye_node);
-
-	return 0;
-}
-
-char* destroy_list() {
-	puts("Starting test: destroy_list");
-
-	list *list = list_new();
-	
 	list_destroy(list);
+	list_node_destroy(hello_node);
+	list_node_destroy(goodbye_node);
 
 	return 0;
 }
 
-char* destroy_node() {
-	puts("Starting test: destroy_node");
+char* create_json_object() {
+	puts("Starting test: create_json_object");
 
-	char *hello = "Hello, world!";
-	list_node *node = list_node_new((void*) hello);
+	json_object *object = json_object_new();
+	MU_TEST(object != NULL,
+			"Error in \"create_json_object\": Cannot create object");
 
-	list_node_destroy(node);
-
+	json_object_destroy(object);
 	return 0;
 }
 
@@ -122,9 +112,11 @@ static char* run_tests() {
 	MU_RUN_TEST(create_list_node);
 	MU_RUN_TEST(add_node_to_list);
 	MU_RUN_TEST(remove_node_from_list);
-	MU_RUN_TEST(destroy_list);
-	MU_RUN_TEST(destroy_node);
 
+	printf("\n");
+
+	puts("BEGINNING JSON TESTS");
+	MU_RUN_TEST(create_json_object);
 	return 0;
 }
 
@@ -132,9 +124,9 @@ int main() {
 	char *result = run_tests();
 
 	if (result != 0) {
-		printf("%s\n", result);
+		printf("\n%s\n", result);
 	} else {
-		puts("Tests complete. No errors found.");
+		puts("\nTests complete. No errors found.");
 	}
 	printf("Tests run: %d\n", tests_run);
 
